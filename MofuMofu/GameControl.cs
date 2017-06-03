@@ -12,11 +12,13 @@ namespace MofuMofu
 {
     public partial class GameControl : UserControl
     {
-        bool gamestart_flag = false;
-        //キーダウンカウンタ
-        int keydown_count = 0;
+        private bool gamestart_flag = false;
+        //キーダウンカウンタ(ここにはxorしたデータが入る)
+        //int keydown_count_xor = 0;
+        public KeyDownCount keyDownCount;
+
         //タイマカウンタ
-        double timer_counter = 0;
+        private double timer_counter = 0;
         public GameControl()
         {
             InitializeComponent();
@@ -24,9 +26,7 @@ namespace MofuMofu
 
         private void GameControl_Load(object sender, EventArgs e)
         {
-            //もふもふの非表示
-            mofumofu_ctl(false);
-            mofumofu_ctl(true);
+            this.keyDownCount = new KeyDownCount();
 
         }
         public void GameControl_Start()
@@ -34,14 +34,17 @@ namespace MofuMofu
             //ゲーム起動フラグを立てる
             gamestart_flag = true;
             //キーダウン回数の初期化
-            keydown_count = 0;
+            keyDownCount.save(0);
+            //keydown_count_xor = 0;
             //キーダウン回数の表示
-            this.keycountLabel.Text = keydown_count.ToString("d") + "回";
+            //this.keycountLabel.Text = (keydown_count_xor).ToString("d") + "回";
+            this.keycountLabel.Text = (keyDownCount.load()).ToString("d") + "回";
             //タイマカウンタの初期化
             timer_counter = 5;
             //タイマの起動
             countTimeTimer.Start();
-
+            //もふもふの非表示
+            mofumofu_ctl(false);
         }
         public void GameControl_KeyDown(object sender, KeyEventArgs e)
         {
@@ -58,9 +61,9 @@ namespace MofuMofu
                 //もふもふの非表示
                 mofumofu_ctl(false);
                 //キーボード回数のカウント
-                keydown_count++;
+                keyDownCount.save(keyDownCount.load() + 1);
                 //キーダウン回数の表示
-                this.keycountLabel.Text = keydown_count.ToString("d") + "回";
+                this.keycountLabel.Text = (keyDownCount.load()).ToString("d") + "回";
             }
         }
 
@@ -90,14 +93,10 @@ namespace MofuMofu
                 gamestart_flag = false;
                 //もふもふの非表示
                 mofumofu_ctl(false);
-                //スコア送信画面の表示(内側にフォームを作成)
-                SendScoreForm sendScoreForm = new SendScoreForm();
-                sendScoreForm.TopLevel = false;
-                this.Controls.Add(sendScoreForm);
-                sendScoreForm.ControlBox = false;
-                sendScoreForm.Text = "";
-                sendScoreForm.Show();
-                sendScoreForm.BringToFront();
+                TopForm.sendScoreControl.Visible = true;
+                TopForm.sendScoreControl.Start();
+               TopForm.gameControl.Visible = false;
+                //                ScoreHttp scoreHttp = new ScoreHttp();
             }
         }
 
