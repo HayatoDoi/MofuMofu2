@@ -16,7 +16,8 @@ namespace MofuMofu
         public static SelectModeControl selectModeControl;
         public static GameControl gameControl;
         public static CountdownControl countdownControl;
-        public static Control cControl;
+        public static SendScoreControl sendScoreControl;
+
         public TopForm()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace MofuMofu
         private void TopWindow_Load(object sender, EventArgs e)
         {
             #region コントロールの作成
-            //ランキング画面===================================
+            //モード選択画面===================================
             selectModeControl = new SelectModeControl();
             this.mainPanel.Controls.Add(selectModeControl);
             selectModeControl.Visible = true;
@@ -41,10 +42,15 @@ namespace MofuMofu
             gameControl = new GameControl();
             this.mainPanel.Controls.Add(gameControl);
             gameControl.Visible = false;
+            //スコア送信画面===================================
+            sendScoreControl = new SendScoreControl();
+            this.mainPanel.Controls.Add(sendScoreControl);
+            sendScoreControl.Visible = false;
+
             #endregion
-            cControl = this.ActiveControl;
 
         }
+
         //ゲーム画面用keyイベントの作成========================
         private void TopForm_KeyDown(object sender, KeyEventArgs e)
         {

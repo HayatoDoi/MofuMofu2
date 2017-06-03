@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MofuMofu", "MofuMofu\MofuMofu.csproj", "{9B2B96A4-A992-4894-BC94-D7D493A13004}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MofuMofu2", "MofuMofu\MofuMofu2.csproj", "{9B2B96A4-A992-4894-BC94-D7D493A13004}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

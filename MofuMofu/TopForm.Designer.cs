@@ -47,7 +47,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "TopForm";
-            this.Text = "もふもふしよ♡";
+            this.Text = "もふもふしよ♡♡";
             this.Load += new System.EventHandler(this.TopWindow_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TopForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TopForm_KeyUp);

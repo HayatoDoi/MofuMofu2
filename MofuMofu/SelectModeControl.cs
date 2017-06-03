@@ -24,17 +24,20 @@ namespace MofuMofu
 
         private void ShowRankingB_Click(object sender, EventArgs e)
         {
-            TopForm.selectModeControl.Visible = false;
             //ランキング画面に移動
             TopForm.rankingControl.Visible = true;
+            //選択画面の非表示
+            TopForm.selectModeControl.Visible = false;
+            TopForm.rankingControl.Start();
         }
 
         private void GameStartB_Click(object sender, EventArgs e)
         {
-            TopForm.selectModeControl.Visible = false;
-            //カウントダウン画面に移動(終了後、ゲーム画面に移動)
+            //カウントダウン画面に移動
             TopForm.countdownControl.Visible = true;
             TopForm.countdownControl.CountdownControl_Start();
+            //選択画面の非表示
+            TopForm.selectModeControl.Visible = false;
         }
     }
 }
